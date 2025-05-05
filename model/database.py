@@ -54,7 +54,7 @@ class Database:
             print(f'Erro de execução: {e}')
             return None
         
-    def consultar(self, sql, params=None):
+    def consultar(self, sql: str, params: Optional[Tuple[Any, ...]] = None) -> Optional[List[dict]]:
         """Executa uma instrução no banco de dados"""
         if self.connection is None and self.cursor is None:
             print('Conexão ao banco de dados não estabelecida!')
