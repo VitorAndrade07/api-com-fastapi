@@ -13,7 +13,7 @@ class Database:
         self.password: str = getenv('DB_PSWD')
         self.database: str = getenv('DB_NAME')
         self.connection: Optional[MySQLConnection] = None # Inicialização da conexão
-        self.cursor: Optional[Union[List[dict]]None] = None # Incialização do cursor
+        self.cursor: Optional[Union[List[dict], None]] = None # Incialização do cursor
 
     def conectar(self) -> None: 
         """Estabelece uma conexão com o banco de dados."""
@@ -69,6 +69,6 @@ class Database:
     
 db = Database()
 db.conectar()
-db.executar('insert into ator (ator) values (Bryan Cranston)')
+db.executar("insert into ator (ator) values ('Bryan Cranston')")
 print(db.consultar('select * from ator'))
 db.desconectar()
