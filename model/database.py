@@ -3,7 +3,7 @@ from mysql.connector import Error, MySQLConnection, CMySQLCursorDict
 from dotenv import load_dotenv
 import os
 from os import getenv
-from typing import Optional, Any, Tuple, List
+from typing import Optional, Any, Tuple, List, Union
 
 class Database:
     def __init__(self) -> None:
@@ -13,7 +13,7 @@ class Database:
         self.password: str = getenv('DB_PSWD')
         self.database: str = getenv('DB_NAME')
         self.connection: Optional[MySQLConnection] = None # Inicialização da conexão
-        self.cursor: Optional[CMySQLCursorDict] = None # Incialização do cursor
+        self.cursor: Optional[Union[List[dict]], None] = None # Incialização do cursor
 
     def conectar(self) -> None:
         """Estabelece uma conexão com o banco de dados."""
@@ -40,7 +40,7 @@ class Database:
             self.connection.close()
         print('Conexão com o banco de dados encerrada com sucesso!')
 
-    def executar(self, sql, params: Optional [Tuple[Any, ...]] = None) -> CMySQLCursorDict:
+    def executar(self, sql, params: Optional [Tuple[Any, ...]] = None) -> Optional[List[dict]]:
         """Executa uma instrução no banco de dados"""
         if self.connection is None and self.cursor is None:
             print('Conexão ao banco de dados não estabelecida!')
