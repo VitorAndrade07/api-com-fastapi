@@ -69,6 +69,6 @@ class Database:
     
 db = Database()
 db.conectar()
-db.executar("insert into ator (ator) values ('Bryan Cranston')")
+db.executar("insert into ator (nome) values ('Tom Holand')")
 print(db.consultar('select * from ator'))
 db.desconectar()
